@@ -1,0 +1,46 @@
+ <?php
+        session_start();
+        include_once('connect.php');
+
+        $sql="SELECT * FROM blog ORDER BY blogid DESC";
+        // $result=$conn->query($sql);
+        $result=mysqli_query($conn,$sql) or die("Error");
+        if(mysqli_num_rows($result)>0){
+        while($row=mysqli_fetch_assoc($result)){
+            $id=$row['blogid'];
+            $title=$row['title'];
+            $subtitle=$row['subtitle'];
+
+            $description=$row['description'];
+            $images=$row['images'];
+
+            ?>
+       
+            <div class="container" >
+ <div class="preview">
+ 
+  <div>
+      <img src="images/covid.jpg" alt="covid-19" height="225" width="200"/>
+  </div>
+  <div class="content">
+      
+   <h2><?php echo $title; ?></h2>
+   <h4 style="color:#8B040B;"><?php echo $subtitle; ?></h4>
+   <p><?php echo $description; ?></p>
+   <div class="tag">
+    <a href="login.php" style="border:none;font-weight:100; text-transform:none;">Posted by Admin</a>
+   
+   </div>
+   <a href="blog1.php" style="float:right;">Read More</a>
+  
+  </div>
+ </div>
+
+</div>
+        
+            <?php
+        }
+    }
+            ?>
+         </div>
+       
